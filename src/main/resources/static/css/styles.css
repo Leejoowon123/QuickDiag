@@ -1,12 +1,13 @@
 :root {
-    --primary-light: #8abdff;
-    --primary: #6d5dfc;
-    --primary-dark: #5b0eeb;
+    --primary-light: #181818;
+    --primary: #000000;
+    --primary-dark: #000000;
     --white: #FFFFFF;
     --greyLight-1: #E4EBF5;
     --greyLight-2: #c8d0e7;
     --greyLight-3: #bec8e4;
     --greyDark: #9baacf;
+    --pastelBlue: #6BA5FF;
 }
 
 *, *::before, *::after {
@@ -19,8 +20,9 @@ html {
     box-sizing: border-box;
     font-size: 62.5%;
     overflow-y: scroll;
-    background: var(--greyLight-1);
+    background: var(--primary-dark);
 }
+
 @media screen and (min-width: 900px) {
     html {
         font-size: 75%;
@@ -29,20 +31,20 @@ html {
 
 .container {
     min-height: 100vh;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     font-family: "Poppins", sans-serif;
-    background: var(--greyLight-1);
+    background: var(--primary-dark);
 }
 
 .components {
     width: 112.5rem;
     height: 60rem;
-    border-radius: 3rem;
-    box-shadow: 0.8rem 0.8rem 1.4rem var(--greyLight-2), -0.2rem -0.2rem 1.8rem var(--white);
+    border-radius: 10px;
+    /*box-shadow: 0.8rem 0.8rem 1.4rem var(--greyLight-2), -0.2rem -0.2rem 1.8rem var(--white);*/
     padding: 4rem;
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr; /* 1열로 고정 */
     grid-auto-rows: min-content; /* 각 행의 높이가 그 행의 내용에 따라 자동으로 결정됨 */
     grid-gap: 2.5rem; /* 행과 열 사이의 간격 */
@@ -51,6 +53,17 @@ html {
     justify-content: center; /* 그리드 자체를 가로 방향으로 중앙에 정렬 */
     align-content: center; /* 그리드 자체를 세로 방향으로 중앙에 정렬 */
     position: relative;
+    order: 2;
+    color: var(--white);
+    background: var(--white);
+}
+.header {
+    font-size: 56px;
+    text-align: center;
+    color: #6BA5FF;
+    padding: 5%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 /*  CHECKBOX  */
@@ -168,8 +181,9 @@ html {
 .btn__primary {
     grid-column: 1/2;
     grid-row: 4/5;
-    background: var(--primary);
-    box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-light), inset -0.2rem -0.2rem 1rem var(--primary-dark), 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+    /*background: var(--primary);*/
+    background: black;
+    box-shadow: inset 0.1rem 0.1rem 0.5rem var(--primary-light), inset -0.1rem -0.1rem 0.5rem var(--primary-dark), 0.15rem 0.15rem 0.3rem var(--greyLight-2), -0.1rem -0.1rem 0.25rem var(--white);
     color: var(--greyLight-1);
 }
 .btn__primary:hover {
@@ -196,18 +210,19 @@ html {
 
 /*  CHIP  */
 .chip {
-    position: fixed; /* 위치를 고정 */
-    top: 0; /* 상단에서 0의 위치에 */
+    position: relative; /* 위치를 고정 */
+    top: 0%; /* 상단에서 0의 위치에 */
     left: 50%; /* 왼쪽에서 50% 위치에 (가운데 정렬을 위해) */
-    transform: translateX(-50%); /* X축 기준으로 -50% 이동하여 정확한 중앙 정렬 */
+    transform: translateX(-50%) ; /* X축 기준으로 -50% 이동하여 정확한 중앙 정렬 */
     width: 34rem;
     height: 8rem;
     border-radius: 1rem;
-    box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+    /*box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);*/
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*z-index: 1000; !* 다른 요소들 위에 보이도록 z-index 설정 *!*/
+    background: var(--primary);
+    z-index: 1000; /* 다른 요소들 위에 보이도록 z-index 설정 */
 }
 .chip__icon {
     width: 3rem;
@@ -218,7 +233,7 @@ html {
     justify-content: center;
     align-items: center;
     font-size: 1.8rem;
-    color: var(--primary);
+    color: var(--pastelBlue);
 }
 .chip p {
     font-size: 0.9rem;
@@ -236,6 +251,30 @@ html {
 }
 
 /*  FORM  */
+.form {
+    grid-column: 3/4;
+    grid-row: 3/4;
+
+}
+.form__input {
+    width: 20.4rem;
+    height: 4rem;
+    border: none;
+    border-radius: 1rem;
+    font-size: 1.4rem;
+    padding-left: 1.4rem;
+    box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2), inset -0.2rem -0.2rem 0.5rem var(--white);
+    background: none;
+    font-family: inherit;
+    color: var(--greyDark);
+}
+.form__input::placeholder {
+    color: var(--greyLight-3);
+}
+.form__input:focus {
+    outline: none;
+    box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+}
 .segmented-control {
 
     width: 68rem;
@@ -359,7 +398,7 @@ html {
 }
 
 .chatbot-toggle-btn {
-    background-color: #6d5dfc;
+    background-color: black;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -388,7 +427,7 @@ html {
 }
 
 .send-btn {
-    background-color: #6d5dfc;
+    background-color: black;
     color: #fff;
     border: none;
     border-radius: 5px;

@@ -18,10 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import qdproject.quickdiag.dto.DataDTO;
 import qdproject.quickdiag.dto.UserDTO;
-import qdproject.quickdiag.service.ChatService;
-import qdproject.quickdiag.service.ChatService2;
-import qdproject.quickdiag.service.DataService;
-import qdproject.quickdiag.service.UserService;
+import qdproject.quickdiag.service.*;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.servlet.http.Cookie;
@@ -33,6 +30,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @Controller
@@ -45,6 +44,7 @@ public class AIController {
     private ChatService2 chatService2;
     private final UserService userService;
     private final DataService dataService;
+    private final DiseaseService diseaseService;
 
     @PostMapping("/diag/askAI") //RequestParam 등 추가, Gemini input을 위한 전처리 기능 구현 _liftyun
     public String generateHealthInformation(@RequestParam(value = "head[]", required = false) String[] headArray,
@@ -162,6 +162,27 @@ public class AIController {
 //            String scriptOutput = chatService.runScriptWithInput(String.valueOf(predictionsNode));
             String scriptOutput = chatService.runScriptWithInput(ask);
             model.addAttribute("scriptOutput",scriptOutput);
+
+            List<String> diseaseNames = diseaseService.extractDiseaseNames(scriptOutput);
+
+            model.addAttribute("diseaseNames", diseaseNames);
+
+            /*model.addAttribute("diseaseName_1", diseaseNames.get(0));
+            model.addAttribute("diseaseName_2", diseaseNames.get(1));
+            model.addAttribute("diseaseName_3", diseaseNames.get(2));
+            model.addAttribute("diseaseName_4", diseaseNames.get(3));
+            model.addAttribute("diseaseName_5", diseaseNames.get(4));*/
+            //각 질병명 추출
+           /* Pattern pattern = Pattern.compile("\\d+\\. (.*)");
+            Matcher matcher = pattern.matcher(scriptOutput);
+
+            List<String> diseaseName = new ArrayList<>();
+
+            while (matcher.find()){
+                diseaseName.add(matcher.group(1));
+            }
+            System.out.println("병명 : "+diseaseName);*/
+
 
             String ask2 = scriptOutput + "1순위 질병은 어느 과를 가야할까?";
             System.out.println(ask2);

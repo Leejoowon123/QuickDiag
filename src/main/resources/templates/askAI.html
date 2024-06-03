@@ -11,32 +11,51 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 </head>
 <body>
+<div id="chatbotContainer" class="chatbot-container">
+    <div id="chatbotHeader" class="chatbot-header">
+        <button id="chatbotToggle" class="chatbot-toggle-btn">챗봇 열기</button>
+    </div>
+    <div id="chatbotBody" class="chatbot-body"></div>
+    <div id="chatInputContainer" class="chat-input-container">
+        <input type="text" id="chatInput" class="chat-input" placeholder="메시지를 입력하세요...">
+        <button onclick="sendInput()" class="send-btn">전송</button>
+    </div>
+</div>
 
 <div class="container">
-    <div class="components">
-        <div class="chip">
-            <div class="chip__icon">
-                <ion-icon name="fitness-outline"></ion-icon>
-            </div>
-            <h2 style="text-align: center; color: #6d5dfc; margin-right: 160px" >QD의 추정진단!</h2>
+    <div class="chip">
+        <div class="chip__icon">
+            <ion-icon name="fitness-outline"></ion-icon>
         </div>
+        <h2 style="text-align: center; color: #6BA5FF; margin-right: 160px" >QD의 추정진단!</h2>
+    </div>
+    <div class="components">
         <div class="form">
             <form action="/chat" method="post">
                 <input type="text" class="form__input"  style="align-items: center; position: absolute; top: 0; left: 50%; transform: translateX(-50%);" name="userInput" id="userInput1" placeholder="추가 증상을 입력하세요...">
-                <label>
-                    <textarea class="form__input" style="width: 500px; height: 300px; resize: none; margin-right: 350px;" name="scriptOutput" id="scriptOutput" readonly th:text="*{scriptOutput}"></textarea>
-                </label>
-                <p id="scriptOutput2" th:text="*{scriptOutput2}">
-                <button type="submit" class="btn btn__primary" style="align-items: center; position: absolute; bottom: 0; left: 68%; transform: translateX(-50%); border: 0">질문하기</button>
+                <!--<label>
+                    <textarea class="form__input" style="width: 500px; height: 300px; resize: none; text-align: center;" name="scriptOutput" id="scriptOutput" readonly th:text="*{scriptOutput}"></textarea>
+                </label>-->
+                <div class="form__input" style="width: 500px; height: 300px; resize: none; text-align: center;">
+                    환자 상태 고려 질병 가능성(병명 요약)<br>
+                    가능성 순위 : <br>
+                    <br>
+                    <p th:each="diseaseName : ${diseaseNames}">
+                        <a href="" th:text="${diseaseName}"></a> <!--값을 주소로 넘기기보다 그냥 getelement-->
+                    </p>
+                </div>
+                <!--                <p id="scriptOutput2" th:text="*{scriptOutput2}">-->
+                <!--                <p><a href="/user/map" class="btn btn__primary" style="align-items: center; position: absolute; bottom: 0; left: 30%;">병원찾기</a></p>-->
+                <!--                <p><button type="submit" class="btn btn__primary" style="align-items: center; position: absolute; bottom: 0; left: 50%; border: 0;">질문하기</button></p>-->
+                <p>
+                    <a href="/user/map" class="btn btn__primary" style="align-items: center; position: absolute; bottom: 0; left: 36%;">병원찾기</a>
+                    <button type="submit" class="btn btn__primary" style="align-items: center; position: absolute; bottom: 0; left: 50%; border: 0;">질문하기</button>
+                </p>
             </form>
         </div>
-        <!--<form action="/user/map" method="get">
-            <input type="hidden" name="scriptOutput2" id="scriptOutput2" th:value="*{scriptOutput2}">
-            <button type="submit" class="btn btn__primary" style="align-items: center; position: absolute; bottom: 0; left: 280%; transform: translateX(-50%);">병원찾기</button>
-        </form>-->
-        <a href="/user/map" class="btn btn__primary" style="text-decoration: none; color: white;">병원찾기</a>
     </div>
 </div>
+<script type="text/javascript" src="/js/diseaseAsk.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

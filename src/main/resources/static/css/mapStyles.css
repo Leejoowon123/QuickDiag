@@ -3,13 +3,13 @@ body {
     margin: 0;
     padding: 0;
     justify-content: center; /* 가로 중앙 정렬 */
-    background-color: #E4EBF5;
+    background-color: black;
 
 }
 
 header {
-    background-color: #E4EBF5;
-    color: white;
+    background-color: black;
+    color: black;
     text-align: center;
     padding: 20px 0;
     border-radius: 10px 10px 0 0;
@@ -21,7 +21,7 @@ main {
 }
 
 #map-container {
-    background-color: #E4EBF5; /* 배경색을 #E4EBF5로 지정합니다. */
+    background-color: black; /* 배경색을 #E4EBF5로 지정합니다. */
     display: flex;
     justify-content: center; /* 수평 가운데 정렬 */
     align-items: center; /* 수직 가운데 정렬 */
@@ -38,7 +38,7 @@ main {
 
 
 footer {
-    background-color: #007bff;
+    background-color: #6BA5FF;
     color: white;
     text-align: center;
     padding: 10px 0;
@@ -46,8 +46,8 @@ footer {
 }
 header h1 {
     margin: 0; /* 기존에 있는 h1 요소의 기본 마진을 제거합니다. */
-    color: #6d5dfc; /* 글씨색을 변경합니다. */
-    background-color: #E4EBF5;
+    color: #6BA5FF; /* 글씨색을 변경합니다. */
+    background-color: black;
     font-size: 30px; /* 원하는 크기로 수정합니다. */
 }
 #container {
@@ -58,13 +58,14 @@ header h1 {
     font-size: 20px; /* 원하는 크기로 설정합니다. */
     margin-bottom: 10px; /* 각 항목 간격을 조절합니다. */
     cursor: pointer; /* 마우스를 가져다 대면 포인터가 변경됩니다. */
-
+    color: #f0f0f0;
 }
 #hospital-list h2 {
     font-size: 26px; /* 원하는 크기로 설정합니다. */
+    color: #6BA5FF;
 }
 #hospitals li:hover {
-    background-color: #f0f0f0; /* 리스트 항목 위에 마우스를 가져다 댔을 때 배경색이 변경됩니다. */
+    background-color: #6BA5FF; /* 리스트 항목 위에 마우스를 가져다 댔을 때 배경색이 변경됩니다. */
 }
 #loading-screen {
     position: fixed;
@@ -111,8 +112,8 @@ header h1 {
 
 :root {
     --primary-light: #8abdff;
-    --primary: #6d5dfc;
-    --primary-dark: #5b0eeb;
+    --primary: #6BA5FF;
+    --primary-dark: #6BA5FF;
     --white: #FFFFFF;
     --greyLight-1: #E4EBF5;
     --greyLight-2: #c8d0e7;
@@ -130,7 +131,7 @@ html {
     box-sizing: border-box;
     font-size: 62.5%;
     overflow-y: scroll;
-    background: var(--greyLight-1);
+    background: black;
 }
 @media screen and (min-width: 900px) {
     html {

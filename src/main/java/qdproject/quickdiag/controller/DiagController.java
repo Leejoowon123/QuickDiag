@@ -10,13 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import qdproject.quickdiag.service.ChatService;
 import qdproject.quickdiag.service.ChatService2;
 
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletResponse;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 @Controller
 @RequiredArgsConstructor

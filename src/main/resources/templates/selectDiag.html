@@ -16,10 +16,14 @@
             align-items: center;
             width: 112.5rem;
             height: 60rem;
-            border-radius: 3rem;
-            box-shadow: 0.8rem 0.8rem 1.4rem var(--greyLight-2), -0.2rem -0.2rem 1.8rem var(--white);
+            border-radius: 10px;
+            /*box-shadow: 0.8rem 0.8rem 1.4rem var(--greyLight-2), -0.2rem -0.2rem 1.8rem var(--white);*/
             padding: 4rem;
             position: relative;
+            color: var(--white);
+            background: var(--white);
+            /*background-image: url("/images/blue.jpg");*/
+            order: 2; /* components1 요소를 chip 위에 배열 */
         }
 
         form{
@@ -31,24 +35,10 @@
 </head>
 <body>
 
-<div id="chatbotContainer" class="chatbot-container">
-    <div id="chatbotHeader" class="chatbot-header">
-        <button id="chatbotToggle" class="chatbot-toggle-btn">챗봇 열기</button>
+<div class="container">
+    <div class="header" style="font-size: 3em; padding: 0">
+        <p style="text-align: center; color: #6BA5FF;" ><ion-icon name="fitness-outline"></ion-icon> 증상 선택</p>
     </div>
-    <div id="chatbotBody" class="chatbot-body"></div>
-    <div id="chatInputContainer" class="chat-input-container">
-        <input type="text" id="chatInput" class="chat-input" placeholder="메시지를 입력하세요...">
-        <button onclick="sendMessage()" class="send-btn">전송</button>
-    </div>
-</div>
-
-<div class="chip">
-    <div class="chip__icon">
-        <ion-icon name="fitness-outline"></ion-icon>
-    </div>
-    <h2 style="text-align: center; color: #6d5dfc; margin-right: 170px" >증상 선택</h2>
-</div>
-<div class="container" style="padding-top: 100px">
     <div class="components1">
         <div class="segmented-control">
 
