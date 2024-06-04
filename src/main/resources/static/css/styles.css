@@ -378,6 +378,11 @@ html {
     justify-content: space-between;
 }
 
+/*chat*/
+
+.chat-box {background: #eee; padding: 5px; max-width: 200px;}
+.mine {margin-left: auto;}
+.line {margin-top: 10px; display: flex;}
 .chatbot-container {
     position: fixed;
     bottom: 20px;
@@ -407,7 +412,7 @@ html {
 }
 
 .chatbot-body {
-    max-height: 200px;
+    max-height: 350px;
     overflow-y: auto;
     padding: 10px;
 }

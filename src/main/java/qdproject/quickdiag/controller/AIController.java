@@ -73,57 +73,30 @@ public class AIController {
         } else {
             if(headArray != null){
                 symptoms.addAll(Arrays.asList(headArray));
-                /*for(int i = 0; headArray.length >= i; i++){
-                    userInput = String.join(",",headArray);
-                }*/
             }
             if(eyeArray != null){
                 symptoms.addAll(Arrays.asList(eyeArray));
-                /*for(int i = 0; eyeArray.length >= i; i++){
-                    userInput = String.join(",",eyeArray);
-                }*/
             }
             if(noseArray != null){
                 symptoms.addAll(Arrays.asList(noseArray));
-                /*for(int i = 0; noseArray.length >= i; i++){
-                    userInput = String.join(",",noseArray);
-                }*/
             }
             if(mouseArray != null){
                 symptoms.addAll(Arrays.asList(mouseArray));
-                /*for(int i = 0; mouseArray.length >= i; i++){
-                    userInput = String.join(",",mouseArray);
-                }*/
             }
             if(earArray != null){
                 symptoms.addAll(Arrays.asList(earArray));
-                /*for(int i = 0; earArray.length >= i; i++){
-                    userInput = String.join(",",earArray);
-                }*/
             }
             if(neckArray != null){
                 symptoms.addAll(Arrays.asList(neckArray));
-                /*for(int i = 0; neckArray.length >= i; i++){
-                    userInput = String.join(",",neckArray);
-                }*/
             }
             if(chestArray != null){
                 symptoms.addAll(Arrays.asList(chestArray));
-                /*for(int i = 0; chestArray.length >= i; i++){
-                    userInput = String.join(",",chestArray);
-                }*/
             }
             if(gasArray != null){
                 symptoms.addAll(Arrays.asList(gasArray));
-                /*for(int i = 0; gasArray.length >= i; i++){
-                    userInput = String.join(",",gasArray);
-                }*/
             }
             if(etcArray != null){
                 symptoms.addAll(Arrays.asList(etcArray));
-                /*for(int i = 0; etcArray.length >= i; i++){
-                    userInput = String.join(",",etcArray);
-                }*/
             }
         }
         String userInput = String.join(",", symptoms);
@@ -159,30 +132,13 @@ public class AIController {
             System.out.println("요청완료");
             System.out.println(predictionsNode);
             System.out.println(text);
-//            String scriptOutput = chatService.runScriptWithInput(String.valueOf(predictionsNode));
             String scriptOutput = chatService.runScriptWithInput(ask);
             model.addAttribute("scriptOutput",scriptOutput);
 
             List<String> diseaseNames = diseaseService.extractDiseaseNames(scriptOutput);
 
+            session.setAttribute("diseaseNames", diseaseNames);
             model.addAttribute("diseaseNames", diseaseNames);
-
-            /*model.addAttribute("diseaseName_1", diseaseNames.get(0));
-            model.addAttribute("diseaseName_2", diseaseNames.get(1));
-            model.addAttribute("diseaseName_3", diseaseNames.get(2));
-            model.addAttribute("diseaseName_4", diseaseNames.get(3));
-            model.addAttribute("diseaseName_5", diseaseNames.get(4));*/
-            //각 질병명 추출
-           /* Pattern pattern = Pattern.compile("\\d+\\. (.*)");
-            Matcher matcher = pattern.matcher(scriptOutput);
-
-            List<String> diseaseName = new ArrayList<>();
-
-            while (matcher.find()){
-                diseaseName.add(matcher.group(1));
-            }
-            System.out.println("병명 : "+diseaseName);*/
-
 
             String ask2 = scriptOutput + "1순위 질병은 어느 과를 가야할까?";
             System.out.println(ask2);

@@ -8,17 +8,31 @@
     <title>Chat with AI</title>
     <link rel="stylesheet" href="/css/styles.css">
 
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<!--    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>-->
 </head>
 <body>
+<script type="importmap">
+    {
+        "imports": {
+        "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+    }
+</script>
 <div id="chatbotContainer" class="chatbot-container">
     <div id="chatbotHeader" class="chatbot-header">
         <button id="chatbotToggle" class="chatbot-toggle-btn">챗봇 열기</button>
     </div>
-    <div id="chatbotBody" class="chatbot-body"></div>
+    <div id="chatbotBody" class="chatbot-body">
+        <div class="line">
+            <span class="chat-box">진단받은 병명이 궁금하시다구요?</span>
+        </div>
+        <div class="line">
+            <span class="chat-box mine">여기 물어보세요!!</span>
+        </div>
+    </div>
     <div id="chatInputContainer" class="chat-input-container">
         <input type="text" id="chatInput" class="chat-input" placeholder="메시지를 입력하세요...">
-        <button onclick="sendInput()" class="send-btn">전송</button>
+        <button id="send" class="send-btn">전송</button>
     </div>
 </div>
 
@@ -41,7 +55,7 @@
                     가능성 순위 : <br>
                     <br>
                     <p th:each="diseaseName : ${diseaseNames}">
-                        <a href="" th:text="${diseaseName}"></a> <!--값을 주소로 넘기기보다 그냥 getelement-->
+                        <a href="" id="diseaseLink" th:text="${diseaseName}"></a>
                     </p>
                 </div>
                 <!--                <p id="scriptOutput2" th:text="*{scriptOutput2}">-->
@@ -55,7 +69,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/js/diseaseAsk.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script type="module" src="/js/diseaseAsk.js"></script>
+<!--<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>-->
 </body>
 </html>

@@ -1,61 +1,71 @@
-<!DOCTYPE html>
-<html>
+<!Doctype html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>KML Click Capture Sample</title>
-    <style>
-        html, body {
-            height: 370px;
-            padding: 0;
-            margin: 0;
-        }
-        #map {
-            height: 360px;
-            width: 300px;
-            overflow: hidden;
-            float: left;
-            border: thin solid #333;
-        }
-        #capture {
-            height: 360px;
-            width: 480px;
-            overflow: hidden;
-            float: left;
-            background-color: #ECECFB;
-            border: thin solid #333;
-            border-left: none;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 <body>
-<div id="map"></div>
-<div id="capture"></div>
-<script>
-    var map;
-    var src = 'https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml';
-
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: new google.maps.LatLng(-19.257753, 146.823688),
-            zoom: 2,
-            mapTypeId: 'terrain'
-        });
-
-        var kmlLayer = new google.maps.KmlLayer(src, {
-            suppressInfoWindows: true,
-            preserveViewport: false,
-            map: map
-        });
-        kmlLayer.addListener('click', function(event) {
-            var content = event.featureData.infoWindowHtml;
-            var testimonial = document.getElementById('capture');
-            testimonial.innerHTML = content;
-        });
+<script type="importmap">
+    {
+        "imports": {
+        "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
     }
 </script>
-<script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxKbz-S5AANbXv0JoOd8dUKFNTLwnK5wE&libraries&callback=initMap">
-</script>
+<style>
+    .chat-content {
+        height: 350px; overflow-y: scroll;
+    }
+    .line {margin-top: 10px; display: flex;}
+    .chat-box {background: #eee; padding: 5px; max-width: 200px;}
+    .mine {margin-left: auto;}
+</style>
+    <div class="chat-content">
+        <div class="line">
+            <span class="chat-box">hi?</span>
+        </div>
+        <div class="line">
+            <span class="chat-box mine">hi!</span>
+        </div>
+    </div>
+    <input class="chat-box" id="input">
+    <button id="send">전송</button>
+
+
+<!--<script type="module">
+    // const { GoogleGenerativeAI } = require('@google/generative-ai');
+    import { GoogleGenerativeAI } from "@google/generative-ai";
+    document.querySelector('#send').addEventListener('click', function(){
+        var template = '<div class="line"><span class="chat-box mine">' + document.querySelector("input").value +'</span></div>';
+
+        document.querySelector('.chat-content').insertAdjacentHTML('beforeend',template);
+
+        const apiKey = "AIzaSyDjjJn_37Y6NuthLBX-VSXWQHqNpUFGYyw";
+        const genAI = new GoogleGenerativeAI(apiKey);
+        chat(document.querySelector('input').value);
+        async function chat(prompt){
+            try{
+                const model = genAI.getGenerativeModel({model: 'gemini-1.5-flash'});
+                const result = await model.generateContent(prompt);
+                const response = await result.response;
+                const text = await response.text();
+
+                if (text) {
+                    console.log(text);
+                    return 200
+                }
+
+            }
+
+            catch (error){
+                console.error(`서버 에러가 발생했습니다: ${error}`);
+            }
+        }
+    });
+</script>-->
+<script type="module" src="/js/diseaseAsk2.js"></script>
 </body>
 </html>
