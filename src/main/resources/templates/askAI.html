@@ -7,8 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chat with AI</title>
     <link rel="stylesheet" href="/css/styles.css">
-
-<!--    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>-->
 </head>
 <body>
 <script type="importmap">
@@ -20,7 +18,7 @@
 </script>
 <div id="chatbotContainer" class="chatbot-container">
     <div id="chatbotHeader" class="chatbot-header">
-        <button id="chatbotToggle" class="chatbot-toggle-btn">챗봇 열기</button>
+        <button id="chatbotToggle" class="chatbot-toggle-btn">챗봇 닫기</button>
     </div>
     <div id="chatbotBody" class="chatbot-body">
         <div class="line">
@@ -41,35 +39,26 @@
         <div class="chip__icon">
             <ion-icon name="fitness-outline"></ion-icon>
         </div>
-        <h2 style="text-align: center; color: #6BA5FF; margin-right: 160px" >QD의 추정진단!</h2>
+        <h2 style="text-align: center; color: #6BA5FF; margin-right: 70px; font-size: 46px" >QD의 추정진단!</h2>
     </div>
     <div class="components">
         <div class="form">
             <form action="/chat" method="post">
-                <input type="text" class="form__input"  style="align-items: center; position: absolute; top: 0; left: 50%; transform: translateX(-50%);" name="userInput" id="userInput1" placeholder="추가 증상을 입력하세요...">
-                <!--<label>
-                    <textarea class="form__input" style="width: 500px; height: 300px; resize: none; text-align: center;" name="scriptOutput" id="scriptOutput" readonly th:text="*{scriptOutput}"></textarea>
-                </label>-->
-                <div class="form__input" style="width: 500px; height: 300px; resize: none; text-align: center;">
-                    환자 상태 고려 질병 가능성(병명 요약)<br>
-                    가능성 순위 : <br>
+                <div class="form__input" style="width: 500px; height: 300px; resize: none; padding-top: 16.8px">
+                    <strong style="color: black">환자 상태 고려 질병 가능성(병명 요약)</strong><br>
+                    <strong style="color: black">가능성 순위 : </strong><br>
                     <br>
                     <p th:each="diseaseName : ${diseaseNames}">
-                        <a href="" id="diseaseLink" th:text="${diseaseName}"></a>
+                        <a class="diseaseName" href="" id="diseaseLink" th:text="${diseaseName}"></a>
                     </p>
                 </div>
-                <!--                <p id="scriptOutput2" th:text="*{scriptOutput2}">-->
-                <!--                <p><a href="/user/map" class="btn btn__primary" style="align-items: center; position: absolute; bottom: 0; left: 30%;">병원찾기</a></p>-->
-                <!--                <p><button type="submit" class="btn btn__primary" style="align-items: center; position: absolute; bottom: 0; left: 50%; border: 0;">질문하기</button></p>-->
                 <p>
-                    <a href="/user/map" class="btn btn__primary" style="align-items: center; position: absolute; bottom: 0; left: 36%;">병원찾기</a>
-                    <button type="submit" class="btn btn__primary" style="align-items: center; position: absolute; bottom: 0; left: 50%; border: 0;">질문하기</button>
+                    <a href="/user/map" class="btn btn__primary" style="align-items: center; position: absolute; bottom: 0; left: 45%;">병원찾기</a>
                 </p>
             </form>
         </div>
     </div>
 </div>
 <script type="module" src="/js/diseaseAsk.js"></script>
-<!--<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>-->
 </body>
 </html>
