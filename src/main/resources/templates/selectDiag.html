@@ -6,7 +6,6 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>증상 선택</title>
-    <link rel="stylesheet" href="/css/styles.css">
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <style>
@@ -32,9 +31,15 @@
         }
 
     </style>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/navBar.css" />
+    <script src="https://kit.fontawesome.com/39996071eb.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
-
+<nav th:replace="~{navbar :: navbarFragment}"></nav>
 <div class="container">
     <div class="header" style="font-size: 3em; padding: 0">
         <p style="text-align: center; color: #6BA5FF;" ><ion-icon name="fitness-outline"></ion-icon> 증상 선택</p>
@@ -77,11 +82,6 @@
             <input type="radio" name="radio2" value="etc" id="tab-9" />
             <label for="tab-9" class= "segmented-control__9">
                 <p>기타</p></label>
-
-            <input type="radio" name="radio2" value="ask" id="tab-10" />
-            <label for="tab-10" class= "segmented-control__10">
-                <p>직접물어보기</p></label>
-
             <div class="segmented-control__color"></div>
         </div>
 
@@ -242,12 +242,6 @@
             </div>
             <!--            <input type="reset" class="btn btn__primary" style="border: 0; margin: 5px" value="취소">-->
         </form>
-        <div class="checkbox" id="tab-10Checkbox" th:if="${loginUserId != null}">
-            <a href="/diag/askAI"><button class="btn btn__primary" style="border: 0; margin: 5px">직접 입력하기</button></a>
-        </div>
-        <div class="checkbox" id="tab-11Checkbox" th:if="${loginUserId == null}">
-            <a href="/user/loginError"><button class="btn btn__primary" style="border: 0; margin: 5px">직접 입력하기</button></a>
-        </div>
         <div style="display: grid; grid-template-columns: repeat(4, 17rem); justify-content: center; overflow: scroll" >
             <div id="tab-1Checkbox_1Output" class="checkbox__1" style="display:none; padding: 3px; width: 8rem">
                 <button id="tab-1Checkbox_1Output_1" style="border: 0">
@@ -366,6 +360,7 @@
 </script>
 <script type="text/javascript" src="/js/outputBox.js"></script>
 <script type="text/javascript" src="/js/checkbox.js"></script>
+<script type="text/javascript" src="/js/mainScripts.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

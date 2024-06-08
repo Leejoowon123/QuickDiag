@@ -60,6 +60,7 @@ public class AIController {
         // Flask 서버의 URL 설정
         String flaskUrl = "http://localhost:8000/predict";
         System.out.println("api요청시작");
+        String loginUserId = (String) session.getAttribute("loginUserId");
 
         // HTTP 요청 헤더 설정
         HttpHeaders headers = new HttpHeaders();
@@ -115,7 +116,6 @@ public class AIController {
             JsonNode responseJson = objectMapper.readTree(responseEntity.getBody());
             JsonNode predictionsNode = responseJson.get("predictions");
             // 로그인 세션 정보를 불러와 DB에서 정보 추출
-            String loginUserId = (String) session.getAttribute("loginUserId");
             DataDTO dataDTO = dataService.userDataFrom(loginUserId);
             //환자 나이 정보 출력을 위함
             UserDTO userDTO = userService.mypageForm(loginUserId);
@@ -144,6 +144,7 @@ public class AIController {
             System.out.println(ask2);
             String scriptOutput2 = chatService2.runScriptWithInput(ask2);
             model.addAttribute("scriptOutput2",scriptOutput2);
+            model.addAttribute("loginUserId",loginUserId);
 
             try {
                 // 한글 문자열을 UTF-8로 URL 인코딩

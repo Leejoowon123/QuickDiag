@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Diag</title>
+    <link rel="stylesheet" href="/css/navBar.css" />
+    <script src="https://kit.fontawesome.com/39996071eb.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav th:fragment="navbarFragment" class="navbar">
+    <div class="navbar_logo">
+        <!--        <i class="fa-brands fa-accusoft"></i>-->
+        <img src="/images/QDlogo.png" style="height: 30px;" alt="">
+        <a href="/">Quick Diag</a>
+    </div>
+    <ul class="navbar_menu" style="padding-right: 100px">
+        <li><a href="/">Home</a></li>
+        <li><a href="#" onclick="checkBeforeRedirect(event)">AI QD</a></li>
+        <li><a href="/user/checkUserSelectedData">User Data</a></li>
+    </ul>
+    <ul class="navbar_link">
+        <li th:if="${loginUserId != null}">
+            <a href="/user/logout">logout</a>
+        </li>
+        <li>
+            <div class="div_if" th:if="${loginUserId == null}">
+                <a href="/user/login"><i class="fa-regular fa-user"></i></a>
+            </div>
+            <div class="div_if" th:if="${loginUserId != null}">
+                <a href="/user/mypage"><i class="fa-solid fa-user"></i></a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+</body>
+</html>

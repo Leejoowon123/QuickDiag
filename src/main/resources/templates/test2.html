@@ -1,71 +1,103 @@
-<!Doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>QuickDiag</title>
+    <link rel="stylesheet" href="/css/mainStyles.css">
+    <link rel="stylesheet" href="/css/navBar.css" />
+    <script src="https://kit.fontawesome.com/39996071eb.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
-<script type="importmap">
-    {
-        "imports": {
-        "@google/generative-ai": "https://esm.run/@google/generative-ai"
-        }
-    }
-</script>
-<style>
-    .chat-content {
-        height: 350px; overflow-y: scroll;
-    }
-    .line {margin-top: 10px; display: flex;}
-    .chat-box {background: #eee; padding: 5px; max-width: 200px;}
-    .mine {margin-left: auto;}
-</style>
-    <div class="chat-content">
-        <div class="line">
-            <span class="chat-box">hi?</span>
+<nav th:replace="~{navbar :: navbarFragment}"></nav>
+<div class="container">
+    <div id="background"></div>
+    <div class="components">
+        <div class="chip">
+            <div class="header" id="typingHeader">Let's meet QD, the AI doctor for you.</div>
         </div>
-        <div class="line">
-            <span class="chat-box mine">hi!</span>
+        <p class="message"></p>
+        <div class="buttons">
+            <div class="div_if" th:if="${loginUserId == null}">
+                <div class="image-container">
+                    <a href="/user/login" onclick="alert('로그인이 필요합니다.');">
+                        <img src="/images/red.jpg" alt="로그인"  class="img_class"/>
+                        <div class="image-text">AI QD.</div>
+                        <div class="image-text-2">AI doctor your symptoms and predicts disease.</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="div_if" th:unless="${loginUserId == null}">
+                <div class="image-container">
+                    <a href="#" onclick="checkBeforeRedirect(event)">
+                        <img src="/images/blue.jpg" alt="리다이렉트"   class="img_class"/>
+                        <div class="image-text">AI QD.</div>
+                        <div class="image-text-2">AI doctor looks symptoms and predicts disease.</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="div_if" th:if="${loginUserId != null}">
+                <div class="image-container">
+                    <a href="/user/userData" style="text-decoration: none;">
+                        <img src="/images/bluered.jpg" alt="데이터 입력"   class="img_class"/>
+                        <div class="image-text">User Data Input</div>
+                        <div class="image-text-2">Input Your Health information</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="div_if" th:if="${loginUserId == null}">
+                <div class="image-container">
+                    <a href="/user/login" style="text-decoration: none;">
+                        <img src="/images/green.jpg" alt="로그인"   class="img_class"/>
+                        <div class="image-text">Sign In</div>
+                        <div class="image-text-2">Let's Start</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="div_if" th:if="${loginUserId == null}">
+                <div class="image-container">
+                    <a href="/user/register" style="text-decoration: none;">
+                        <img src="/images/pinkskyblue.jpg" alt="회원가입"  class="img_class"/>
+                        <div class="image-text">Sing UP</div>
+                        <div class="image-text-2">Let's Go With QD</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="div_if" th:if="${loginUserId != null}">
+                <div class="image-container">
+                    <a href="/user/logout" style="text-decoration: none;">
+                        <img src="/images/purple.jpg" alt="로그아웃"   class="img_class"/>
+                        <div class="image-text">Log Out</div>
+                        <div class="image-text-2">See You Next.</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="div_if" th:if="${loginUserId != null}">
+                <div class="image-container">
+                    <a href="/user/mypage" style="text-decoration: none;">
+                        <img src="/images/pink.jpg" alt="마이페이지"   class="img_class"/>
+                        <div class="image-text">MyPage</div>
+                        <div class="image-text-2">Personal Page</div>
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
-    <input class="chat-box" id="input">
-    <button id="send">전송</button>
+</div>
 
 
-<!--<script type="module">
-    // const { GoogleGenerativeAI } = require('@google/generative-ai');
-    import { GoogleGenerativeAI } from "@google/generative-ai";
-    document.querySelector('#send').addEventListener('click', function(){
-        var template = '<div class="line"><span class="chat-box mine">' + document.querySelector("input").value +'</span></div>';
-
-        document.querySelector('.chat-content').insertAdjacentHTML('beforeend',template);
-
-        const apiKey = "AIzaSyDjjJn_37Y6NuthLBX-VSXWQHqNpUFGYyw";
-        const genAI = new GoogleGenerativeAI(apiKey);
-        chat(document.querySelector('input').value);
-        async function chat(prompt){
-            try{
-                const model = genAI.getGenerativeModel({model: 'gemini-1.5-flash'});
-                const result = await model.generateContent(prompt);
-                const response = await result.response;
-                const text = await response.text();
-
-                if (text) {
-                    console.log(text);
-                    return 200
-                }
-
-            }
-
-            catch (error){
-                console.error(`서버 에러가 발생했습니다: ${error}`);
-            }
-        }
-    });
-</script>-->
-<script type="module" src="/js/diseaseAsk2.js"></script>
+<script type="text/javascript" src="/js/mainScripts.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

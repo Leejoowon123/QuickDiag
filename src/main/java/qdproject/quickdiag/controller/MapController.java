@@ -1,8 +1,10 @@
 package qdproject.quickdiag.controller;
 
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import qdproject.quickdiag.service.UserService;
@@ -15,13 +17,12 @@ import java.nio.charset.StandardCharsets;
 public class MapController {
 
     private final UserService userService;
-    /*@GetMapping("/user/map")
-    public String map() {
-        return "map";
-    }*/
 
     @GetMapping("/user/map")
-    public ModelAndView handleMap(@CookieValue(value = "scriptOutput2", defaultValue = "") String scriptOutput2) {
+    public ModelAndView handleMap(@CookieValue(value = "scriptOutput2", defaultValue = "") String scriptOutput2,
+                                  HttpSession session, Model model) {
+        String loginUserId = (String) session.getAttribute("loginUserId");
+        model.addAttribute("loginUserId",loginUserId);
         try {
             // URL 디코딩을 통해 인코딩된 쿠키 값을 복원
             String decodedValue = URLDecoder.decode(scriptOutput2, StandardCharsets.UTF_8.toString());

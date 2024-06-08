@@ -14,10 +14,10 @@ spring:
     #    각자 PC에 만들어놓은 Database이름을 써야 합니다.
     url: jdbc:mysql://localhost:3306/QuickDiag?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     #    mysql에 생성한 사용자 계정 정보를 써야 합니다.
-#    username: root
-#    password: 12345678
-    username: qdroot
-    password: qdroot
+    username: root
+    password: 12345678
+#    username: qdroot
+#    password: qdroot
   thymeleaf:
     cache: false
 
