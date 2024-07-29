@@ -8,7 +8,7 @@ const {
 } = require("@google/generative-ai");
 
 const MODEL_NAME = "gemini-1.0-pro-001";
-const API_KEY = "AIzaSyDjjJn_37Y6NuthLBX-VSXWQHqNpUFGYyw"; //개인 API 사용필요.
+const API_KEY = "Personal API key"; //개인 API 사용필요.
 
 async function runChat(userInput) {
     const genAI = new GoogleGenerativeAI(API_KEY);
